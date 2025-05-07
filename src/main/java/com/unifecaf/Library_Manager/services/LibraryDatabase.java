@@ -18,8 +18,8 @@ public class LibraryDatabase {
         return booksRepository.findAll();
     }
 
-    public Book getSpecific(Integer id) {
+    public Book saveBook(Book book) {
 
-        return booksRepository.findById(id).orElse(null);
+        return booksRepository.save(book);
     }
 }

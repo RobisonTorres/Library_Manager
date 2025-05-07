@@ -8,13 +8,21 @@ public class Book {
 
     @Id
     private Integer id;
-    private String firstName;
-    private String lastName;
+    private String title;
+    private String author;
+    private String publisher;
+    private byte[] cover;
+    private String status;
 
-    public Book(String lastName, String firstName, Integer id) {
+    public Book() { }
+
+    public Book(Integer id, String title, String author, String publisher, byte[] cover, String status) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.cover = cover;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -25,20 +33,43 @@ public class Book {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public byte[] getCover() {
+        return cover;
+    }
+
+    public void setCover(byte[] cover) {
+        this.cover = cover;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

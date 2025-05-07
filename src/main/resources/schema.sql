@@ -1,5 +1,8 @@
-create table if not exists books (
+CREATE TABLE IF NOT EXISTS books (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    first_name varchar(80),
-    last_name varchar(80)
+    title VARCHAR(150) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    publisher VARCHAR(100),
+    cover LONGBLOB,
+    status VARCHAR(50)
 );

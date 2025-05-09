@@ -1,0 +1,6 @@
+#FileLock
+#Fri May 09 18:00:42 BRT 2025
+hostName=RobisonTorres
+id=196b6d9b21c3dda5297f1aeebe08694383b256fcb78
+method=file
+server=192.168.56.1\:9608

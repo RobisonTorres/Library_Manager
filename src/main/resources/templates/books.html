@@ -7,10 +7,9 @@
 </head>
 <body>
 <h2>Book List</h2>
-
+<!--This line redirects to an endpoint in the controller-->
 <a href="/books/new">Add New Book</a>
 <br><br>
-
 <table border="1">
     <thead>
     <tr>
@@ -23,14 +22,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="book : ${books}">
+    <tr th:each="book : ${all_books}">  <!-- Attribute name - all_books -->
         <td th:text="${book.id}">1</td>
         <td th:text="${book.title}">Example Title</td>
         <td th:text="${book.author}">Example Author</td>
         <td th:text="${book.publisher}">Example Publisher</td>
         <td th:text="${book.status}">Available</td>
         <td>
-            <!-- Exemplo: mostrar a capa se tiver endpoint /books/{id}/cover -->
             <img th:src="@{/books/{id}/cover(id=${book.id})}" alt="Cover" width="50" height="75"/>
         </td>
     </tr>

@@ -7,8 +7,13 @@
 </head>
 <body>
 <h3>Add a New Book:</h3>
-
-<form th:action="@{/books}" th:object="${book}" method="post" enctype="multipart/form-data">
+<!--
+  This form:
+  - Sends the book data (via POST) to the /create_book endpoint.
+  - Receives the book object from the /books/new endpoint to populate the form with a new object.
+  - Uses enctype="multipart/form-data" to allow file uploads (for the cover image).
+-->
+<form th:action="@{/create_book}" th:object="${book}" method="post" enctype="multipart/form-data">
     <label for="title">Title:</label>
     <input type="text" id="title" th:field="*{title}" /><br>
 
@@ -21,8 +26,8 @@
     <label for="status">Status:</label>
     <input type="text" id="status" th:field="*{status}" /><br>
 
-    <label for="cover">Cover (Image File):</label>
-    <input type="file" id="cover" name="cover" /><br>
+    <label for="coverFile">Cover (Image File):</label>
+    <input type="file" id="coverFile" name="coverFile" /><br>
 
     <input type="submit" value="Create" />
 </form>

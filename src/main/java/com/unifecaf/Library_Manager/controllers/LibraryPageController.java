@@ -52,4 +52,11 @@ public class LibraryPageController {
         return book.getCover();
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Integer id) {
+        // This function...
+        libraryDatabase.deleteBook(id);
+        return "redirect:/books";  // This redirects to the /books endpoint.
+    }
+    
 }

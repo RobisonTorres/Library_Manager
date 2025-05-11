@@ -14,9 +14,7 @@ public class LibraryDatabase {
         this.booksRepository = booksRepository;
     }
 
-
     public Book getById(Integer id) {
-
         // This function retrieves a book by ID.
         return booksRepository.findById(id).orElse(null);
     }
@@ -28,13 +26,15 @@ public class LibraryDatabase {
 
     public Book saveBook(Book book, MultipartFile coverFile) throws Exception {
         // This function saves a new book in the database.
-        book.setCover(coverFile.getBytes());
+        if (coverFile != null && !coverFile.isEmpty()) {
+            book.setCover(coverFile.getBytes());
+        }
         return booksRepository.save(book);
     }
 
     public void deleteBook(Integer id) {
-
         // This function deletes a book by id.
         booksRepository.deleteById(id);
     }
+
 }

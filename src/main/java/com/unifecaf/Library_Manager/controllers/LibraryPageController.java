@@ -1,6 +1,7 @@
 package com.unifecaf.Library_Manager.controllers;
 
 import com.unifecaf.Library_Manager.models.Book;
+import com.unifecaf.Library_Manager.models.BookDto;
 import com.unifecaf.Library_Manager.services.LibraryDatabase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,11 +53,38 @@ public class LibraryPageController {
         return book.getCover();
     }
 
+    @GetMapping("/update_book/{id}")
+    public String showEditForm(Model model, @PathVariable Integer id) {
+        // Retrieves the existing Book object from the database using the provided ID.
+        // Creates a new BookDto object to hold the book's data in a form-friendly structure.
+        Book book = libraryDatabase.getById(id);
+        BookDto bookEdit = new BookDto();
+        bookEdit.setId(book.getId());
+        bookEdit.setTitle(book.getTitle());
+        bookEdit.setAuthor(book.getAuthor());
+        bookEdit.setPublisher(book.getPublisher());
+        bookEdit.setStatus(book.getStatus());
+        model.addAttribute("book", bookEdit);
+        return "editBookForm";
+    }
+
+    @PostMapping("/update_book/{id}")
+    public String editBook(@PathVariable Integer id, @ModelAttribute BookDto editBook) throws Exception {
+        // Retrieves the existing Book object from the database using the provided ID.
+        // Updates the Book object with the new values submitted through the form.
+        Book book = libraryDatabase.getById(id);
+        book.setTitle(editBook.getTitle());
+        book.setAuthor(editBook.getAuthor());
+        book.setPublisher(editBook.getPublisher());
+        book.setStatus(editBook.getStatus());
+        libraryDatabase.saveBook(book, null);
+        return "redirect:/books";
+    }
+
     @PostMapping("/delete/{id}")
     public String deleteBook(@PathVariable Integer id) {
-        // This function...
+        // This function deletes a book by id.
         libraryDatabase.deleteBook(id);
-        return "redirect:/books";  // This redirects to the /books endpoint.
+        return "redirect:/books";
     }
-    
 }

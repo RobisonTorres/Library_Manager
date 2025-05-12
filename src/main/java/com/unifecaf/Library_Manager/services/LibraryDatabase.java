@@ -37,4 +37,18 @@ public class LibraryDatabase {
         booksRepository.deleteById(id);
     }
 
+    public Iterable<Book> searchByTitle(String title) {
+        // This function finds a book by title.
+        return booksRepository.findBookByTitle(title);
+    }
+
+    public Iterable<Book> searchByAuthor(String author) {
+        // This function finds a book by author.
+        return booksRepository.findBookByAuthor(author);
+    }
+
+    public Iterable<Book> searchByPublisher(String publisher) {
+        // This function finds a book by publisher.
+        return booksRepository.findBookByPublisher(publisher);
+    }
 }

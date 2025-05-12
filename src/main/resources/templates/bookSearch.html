@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Books</title>
+    <title>Book Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
@@ -11,12 +11,34 @@
 <div class="container my-5">
     <div class="card shadow-sm border-0">
         <div class="card-body">
-            <h2 class="text-center text-primary mb-4">📚 All Books</h2>
 
-            <div class="d-flex justify-content-end mb-3 gap-2">
-                <a class="btn btn-primary" href="/search_book">Search Book</a>
-                <a class="btn btn-success" href="/books/new">Add New Book</a>
+            <div class="container mb-4">
+                <div class="row align-items-center">
+                    <div class="col text-center">
+                        <h2 class="text-primary mb-1">📚 Book Search</h2>
+                        <p class="text-muted">Find your next read by title, author, or publisher</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        <a class="btn btn-success" href="/books">
+                            <i class="bi bi-journal-bookmark"></i>See All Catalog</a>
+                    </div>
+                </div>
             </div>
+
+            <form class="row g-3 mb-4" th:action="@{/search_book}" method="get">
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="search_info" placeholder="Search here...">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-outline-primary w-100">Search</button>
+                </div>
+                <div th:if="${result}">
+                    <p class="text-primary fs-5 fw-semibold" th:text="|Search for: ${result}|"></p>
+                </div>
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
@@ -31,7 +53,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="book : ${all_books}">
+                    <tr th:each="book : ${books_found}">
                         <td th:text="${book.title}">Example Title</td>
                         <td th:text="${book.author}">Example Author</td>
                         <td th:text="${book.publisher}">Example Publisher</td>
@@ -57,7 +79,6 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>

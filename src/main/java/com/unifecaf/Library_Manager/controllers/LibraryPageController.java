@@ -7,10 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class LibraryPageController {
 
+    // Dependency Injection.
     private final LibraryDatabase libraryDatabase;
 
     public LibraryPageController(LibraryDatabase libraryDatabase) {
@@ -40,17 +44,33 @@ public class LibraryPageController {
         // @RequestParam binds the uploaded file (coverFile) to a MultipartFile parameter.
         // @RequestParam is used because multipart file uploads cannot be directly bound to the Book object using @ModelAttribute.
         libraryDatabase.saveBook(book, coverFile);
-      return "redirect:/books";  // This redirects to the /books endpoint.
+        return "redirect:/books";  // This redirects to the /books endpoint.
     }
 
     @GetMapping("/books/{id}/cover")
     @ResponseBody
+    public byte[] showCover(@PathVariable Integer id) {
         // It allows Spring to return the method's return value directly in the HTTP response body.
         // Which display the image in the html body.
-    public byte[] showCover(@PathVariable Integer id) {
         // This function retrieves the book's cover.
         Book book = libraryDatabase.getById(id);
         return book.getCover();
+    }
+
+    @GetMapping("/search_book")
+    public String searchBook(@RequestParam(value = "search_info", required = false) String info, Model model) {
+        // @RequestParam binds the query parameter "search_info" to the method parameter 'info'.
+        // 'required = false' allows the parameter to be omitted from the request (can be null).
+        Set<Book> results = new HashSet<>();
+        if (info != null && !info.trim().isEmpty()) {
+            // If the input is not null or empty, perform searches by title, author, and publisher.
+            results.addAll((Collection<? extends Book>) libraryDatabase.searchByTitle(info));
+            results.addAll((Collection<? extends Book>) libraryDatabase.searchByAuthor(info));
+            results.addAll((Collection<? extends Book>) libraryDatabase.searchByPublisher(info));
+        }
+        model.addAttribute("books_found", results);
+        model.addAttribute("result", info);
+        return "bookSearch";
     }
 
     @GetMapping("/update_book/{id}")

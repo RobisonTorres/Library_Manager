@@ -1,9 +1,9 @@
-# 📚 Library Manager
+# Library Manager
 
 ## Overview
 Library Manager is a web-based application built with **Java 17**, **Spring Boot**, **Thymeleaf**, and an in-memory **H2 Database**. It enables library administrators to efficiently manage a collection of books with support for uploading cover images, searching, editing, and deleting entries.
 
-## ✨ Features
+## Features
 - 📖 List all books in the system.
 - ➕ Add new books with cover images.
 - 🔍 Search books by title, author, or publisher.
@@ -11,19 +11,20 @@ Library Manager is a web-based application built with **Java 17**, **Spring Boot
 - 🗑️ Delete books from the catalog.
 - 🖼️ Display book cover images directly on the web page.
 
-## 🧰 Tech Stack
-- Java 17+
-- Spring Boot Web
-- Spring Data JDBC
-- Thymeleaf
-- H2 Database (Runtime)
-- Spring Boot Test (Testing)
+## Tech Stack & Prerequisites
 
-## 🚀 Getting Started
+This project is built with the following technologies, and requires the following tools to be installed:
 
 ### Prerequisites
-- Java 17 or higher installed
-- Maven installed
+- **Java 17 or higher**
+- **Maven** (for building and running the project)
+
+### Tech Stack
+- **Spring Boot Web** – for building RESTful web services
+- **Spring Data JDBC** – for database interaction
+- **Thymeleaf** – as the template engine for views
+- **H2 Database** – in-memory database used at runtime
+- **Spring Boot Test** – for unit and integration testing
 
 ### Setup Instructions
 
@@ -33,15 +34,18 @@ Library Manager is a web-based application built with **Java 17**, **Spring Boot
    cd Library_Manager
 
 2. **Build the project using Maven**
+    ```bash
     mvn clean install
 
 3. **Run the application**
+    ```bash
     mvn spring-boot:run
 
 4. **Access in browser**
+    ```bash
     http://localhost:8080/books
 
-## 📂 Controller Endpoints
+## Controller Endpoints
 
 | HTTP Method | Endpoint              | Description                              |
 |-------------|-----------------------|------------------------------------------|

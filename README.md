@@ -1,7 +1,7 @@
 # Library Manager
 
 ## Overview
-Library Manager is a web-based application built with **Java 17**, **Spring Boot**, **Thymeleaf**, and an in-memory **H2 Database**. It enables library administrators to efficiently manage a collection of books with support for uploading cover images, searching, editing, and deleting entries.
+Library Manager is a web-based application built with **Java**, **Spring Boot**, **Thymeleaf**, and an in-memory **H2 Database** for tests. It enables library administrators to efficiently manage a collection of books with support for uploading cover images, searching, editing, and deleting entries.
 
 ## Features
 - 📖 List all books in the system.
@@ -12,7 +12,6 @@ Library Manager is a web-based application built with **Java 17**, **Spring Boot
 - 🖼️ Display book cover images directly on the web page.
 
 ## Tech Stack & Prerequisites
-
 This project is built with the following technologies, and requires the following tools to be installed:
 
 ### Prerequisites
@@ -20,11 +19,10 @@ This project is built with the following technologies, and requires the followin
 - **Maven** (for building and running the project)
 
 ### Tech Stack
-- **Spring Boot Web** – for building RESTful web services
+- **Spring Boot Web** – for building web services
 - **Spring Data JDBC** – for database interaction
-- **Thymeleaf** – as the template engine for views
+- **Thymeleaf** – template engine for views
 - **H2 Database** – in-memory database used at runtime
-- **Spring Boot Test** – for unit and integration testing
 
 ### Setup Instructions
 
